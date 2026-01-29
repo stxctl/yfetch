@@ -13,7 +13,15 @@ Paketteki install.sh aracına çalıştırma izinini verip çalıştırın, eğe
 [yfetch bir süper kullanıcı izni gerektirmez, sudo/doas kullanmadan çalışırabilirsiniz.]
   
  yfetch --save {Dizin} ==> {Dizin} yolunu kayıt yeri olarak seçer, video ve sesler seçtiğiniz dizine kaydedilir.
+ 
+ 
  yfetch --get {URL} -v ==> {URL} içindeki videoyu .mp4 formatında indirir, sesli/sessiz olarak indirme seçenekleri mevcuttur. 
+ 
+ 
  yfetch --get {URL} -a ==> {URL} içindeki videonun sesini .mp3 formatında, otomatik olarak en yüksek kalitede indirir. 
+ 
+ 
  yfetch --get {URL} -v -q {Kalite} ==> {URL} içindeki videoyu {Kalite} içinde belirttiğiniz kalitede indirir, p kullanmanıza gerek yoktur, sade bir biçimde 720, 1080 vb. şeklinde yazınız.
+ 
+ 
  yfetch --get {URL} --info ==> {URL} içindeki videonun format kodu, uzantı, çözünürlük, kare hızı, kanallar, dosya boyutu, bit hızı, protokollerini öğrenebilirsiniz. Henüz kullanıcı dostu bir çıktı sağlayamıyor, en yakın zamanda düzelteceğim. 
