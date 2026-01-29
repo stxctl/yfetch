@@ -9,6 +9,8 @@
 ## İndirme
 Paketteki install.sh aracına çalıştırma izinini verip çalıştırın, eğer yoksa işletim sisteminizi otomatik tanıyarak gereken paketleri kuracak ve yfetch'i otomatik olarak çalıştırılabilir hale getirecektir.
 
+**Destekli Dağıtımlar:** Arch Linux, Debian, Void Linux, Fedora, Solus, MacOS
+
 ## Geniş çaplı kullanım rehberi
 [yfetch bir süper kullanıcı izni gerektirmez, sudo/doas kullanmadan çalışırabilirsiniz.]
   
