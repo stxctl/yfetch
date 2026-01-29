@@ -1,0 +1,351 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import argparse
+import locale
+from pathlib import Path
+
+CONFIG_DIR = Path.home() / ".config" / "yfetch"
+CONFIG_FILE = CONFIG_DIR / ".config"
+
+def main():
+
+    parser = argparse.ArgumentParser(description="yfetch: Download Vides From Terminal!")
+    
+    parser.add_argument("--get", help="URL'ni bundan sonra yapıştır.")
+    parser.add_argument("--save", help="İndirilen dosyaların kaydedileceği dizini seç.")
+    parser.add_argument("--info", action="store_true", help="İndirmeden önce video hakkında bilgi al.")
+    parser.add_argument("-q", "--quality", help="Video için çözünürlük seç.", default="1080")
+    parser.add_argument("-a", "--audio", action="store_true", help="Yalnızca ses.")
+    parser.add_argument("-v", "--video", action="store_true", help="Video modu.")
+    args = parser.parse_args()
+
+# --save flag'i tanımı
+
+    if args.save:
+
+        savepath = Path(args.save).expanduser().absolute()
+        if not savepath.exists():
+            print(f"yfetch: '{args.save}' klasörü bulunamadı.")
+            onay = input("Yenisini oluşturmak ister misiniz? (Y/n)").lower()
+            if onay == 'y' or onay == '':
+                savepath.mkdir(parents=True, exist_ok=True)
+                print(f"Klasör oluşturuldu: {savepath}")
+            else:
+                print("İşlem İptal Edildi.")
+                return
+        CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+        with open(CONFIG_FILE, "w") as f:
+             f.write(str(savepath))
+    
+        print(f"İndirme dizini kaydedildi: {savepath}")
+
+# --get flag'i tanımı
+
+    if args.get:
+        if not CONFIG_FILE.exists():
+            print("Hata: Önce bir indirme dizini ayarla.")
+            print("Örn: yfetch --save ~/indirme_dizini")
+            return
+
+        with open(CONFIG_FILE, "r") as f:
+            savepath = f.read().strip()
+
+        format_selection = ""
+        kalite = args.quality
+
+        if args.audio:
+            format_selection = "-f 'ba' -x --audio-format mp3"
+            print(f"Mod: Sadece Ses (MP3)")
+        elif args.video:
+            videosesi = input("Videonuzu sesli olarak indirmek ister misiniz? (Y/n)")
+            if videosesi == 'y' or videosesi == '':
+                format_selection = f"-f 'bv[height<={kalite}]+ba/b[height<={kalite}]/b'"
+                print(f"Mod: Sesli Video (Max {kalite}p)")
+            else:
+                format_selection = f"-f 'bv[height<={kalite}]'"
+                print(f"Mod: Sessiz Video (Max {kalite}p)")
+
+        else:
+            format_selection = "-f 'b'"        
+            
+        if args.info:
+            os.system(f"yt-dlp -F {args.get}")
+            return
+            
+        progress_sablonu = '--progress-template "[download] %(progress._percent_str)s | Hız: %(progress._speed_str)s [%(progress._graph_str)s]"'
+
+        print(f"{savepath}'e kaydediliyor...")
+
+        os.system(f'yt-dlp --force-ipv4 --no-check-certificate --client-certificate "" --extractor-args "youtube:player_client=android,web" {format_selection} {progress_sablonu} -P "{savepath}" "{args.get}"')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# En Alt Kısım.
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
