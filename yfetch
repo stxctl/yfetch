@@ -28,7 +28,7 @@ def main():
         savepath = Path(args.save).expanduser().absolute()
         if not savepath.exists():
             print(f"yfetch: '{args.save}' klasörü bulunamadı.")
-            onay = input("Yenisini oluşturmak ister misiniz? (Y/n)").lower()
+            onay = input("Yenisini oluşturmak ister misiniz? (Y/n) ").lower()
             if onay == 'y' or onay == '':
                 savepath.mkdir(parents=True, exist_ok=True)
                 print(f"Klasör oluşturuldu: {savepath}")
@@ -59,7 +59,7 @@ def main():
             format_selection = "-f 'ba' -x --audio-format mp3"
             print(f"Mod: Sadece Ses (MP3)")
         elif args.video:
-            videosesi = input("Videonuzu sesli olarak indirmek ister misiniz? (Y/n)")
+            videosesi = input("Videonuzu sesli olarak indirmek ister misiniz? (Y/n) ")
             if videosesi == 'y' or videosesi == '':
                 format_selection = f"-f 'bv[height<={kalite}]+ba/b[height<={kalite}]/b'"
                 print(f"Mod: Sesli Video (Max {kalite}p)")
